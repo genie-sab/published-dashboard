@@ -1,12 +1,15 @@
 @use "../styles/variables" as *;
 
 .card {
-  border: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #F0F1F1;
   border-radius: 16px;
-  padding: 20px;
+  padding: 16px;
   background: $white;
   transition: box-shadow 0.2s ease;
-
+  width: 380px;
   &:hover {
     box-shadow: $shadow-md;
   }
@@ -16,12 +19,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
 }
 
 .fileIcon {
-  width: 44px;
-  height: 44px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,7 +32,7 @@
 
 .fileName {
   font-size: $text-md;
-  font-weight: $fw-semibold;
+  font-weight: $fw-regular;
   color: $text-primary;
   flex: 1;
   overflow: hidden;
@@ -49,36 +51,27 @@
 .stat {
   flex: 1;
   padding: 0 12px;
-
-  &:first-child {
-    padding-left: 0;
-  }
-
-  &:last-child {
-    padding-right: 0;
-  }
-
-  & + & {
-    border-left: 1px solid $border-light;
-  }
+  align-self: center;
+  gap: 8px;
+  padding: 8px 12px;
 }
 
 .statsRow {
   display: flex;
-  padding-top: 16px;
-  margin-bottom: 16px;
+  gap: 12px;
 }
 
 
 .statLabel {
-  font-size: $text-xs;
-  color: $text-muted;
+  font-size: $text-sm;
+  font-weight: $fw-regular;
+  color: $text-table-title;
   margin-bottom: 4px;
 }
 
 .statValue {
-  font-size: 18px;
-  font-weight: $fw-bold;
+  font-size: $text-md;
+  font-weight: $fw-regular;
   color: $text-primary;
 }
 
@@ -86,13 +79,13 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: $text-xs;
-  color: $text-muted;
-  padding-top: 12px;
+  font-size: $text-sm;
+  font-weight: $fw-regular;
+  color: $text-secondary;
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
   }
 }

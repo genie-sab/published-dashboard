@@ -53,10 +53,12 @@ const Cards = ({
           <div className={styles.statLabel}>Downloads</div>
           <div className={styles.statValue}>{downloads.toLocaleString()}</div>
         </div>
+        <div className="border "></div>
         <div className={styles.stat}>
           <div className={styles.statLabel}>Views</div>
           <div className={styles.statValue}>{views.toLocaleString()}</div>
         </div>
+         <div className="border "></div>
         <div className={styles.stat}>
           <div className={styles.statLabel}>Revenue</div>
           <div className={styles.statValue}>{revenue.toLocaleString()}</div>

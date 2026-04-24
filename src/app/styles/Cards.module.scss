@@ -1,12 +1,14 @@
+@use "../styles/variables" as *;
+
 .card {
-  border: 1px solid #e5e2ec;
+  border: 1px solid $border-color;
   border-radius: 16px;
   padding: 20px;
-  background: #fff;
+  background: $white;
   transition: box-shadow 0.2s ease;
 
   &:hover {
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: $shadow-md;
   }
 }
 
@@ -20,55 +22,16 @@
 .fileIcon {
   width: 44px;
   height: 44px;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 22px;
-  background: #e8f5e9;
-  color: #2e7d32;
-
-  &.pdf {
-    background: #fce4ec;
-    color: #c62828;
-  }
-
-  &.doc {
-    background: #e3f2fd;
-    color: #1565c0;
-  }
-
-  &.xls {
-    background: #e8f5e9;
-    color: #2e7d32;
-  }
-
-  &.ppt {
-    background: #fff3e0;
-    color: #e65100;
-  }
-
-  &.img {
-    background: #f3e5f5;
-    color: #7b1fa2;
-  }
-
-  &.txt {
-    background: #e0f2f1;
-    color: #00695c;
-  }
-
-  svg {
-    width: 24px;
-    height: 24px;
-  }
 }
 
 .fileName {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1a1a2e;
+  font-size: $text-md;
+  font-weight: $fw-semibold;
+  color: $text-primary;
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -81,33 +44,6 @@
   gap: 8px;
   margin-left: auto;
   flex-shrink: 0;
-}
-
-.checkbox {
-  width: 22px;
-  height: 22px;
-  border: 1.5px solid #d0cdd8;
-  border-radius: 6px;
-  cursor: pointer;
-  appearance: none;
-  background: #fff;
-  flex-shrink: 0;
-
-  &:checked {
-    background: #7c3aed;
-    border-color: #7c3aed;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 14px;
-  }
-}
-
-.statsRow {
-  display: flex;
-  border-top: 1px solid #ece8f3;
-  padding-top: 16px;
-  margin-bottom: 16px;
 }
 
 .stat {
@@ -123,30 +59,36 @@
   }
 
   & + & {
-    border-left: 1px solid #ece8f3;
+    border-left: 1px solid $border-light;
   }
 }
 
+.statsRow {
+  display: flex;
+  padding-top: 16px;
+  margin-bottom: 16px;
+}
+
+
 .statLabel {
-  font-size: 13px;
-  color: #8a8a9a;
+  font-size: $text-xs;
+  color: $text-muted;
   margin-bottom: 4px;
 }
 
 .statValue {
   font-size: 18px;
-  font-weight: 700;
-  color: #1a1a2e;
+  font-weight: $fw-bold;
+  color: $text-primary;
 }
 
 .publishedAt {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
-  color: #8a8a9a;
+  font-size: $text-xs;
+  color: $text-muted;
   padding-top: 12px;
-  border-top: 1px solid #ece8f3;
 
   svg {
     width: 16px;

@@ -1,56 +1,58 @@
+@use "../styles/variables" as *;
+
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 10px 24px;
-  border-radius: 999px;
-  border: 1.5px solid #d0cdd8;
-  background: #fff;
-  color: #1a1a2e;
+  border-radius: 10px;
+  border: 1.5px solid $primary-100;
+  background: $white;
+  color: $text-primary;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: $fw-semibold;
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.15s ease;
 
   &:hover {
-    background: #f5f3f8;
-    border-color: #b8b3c6;
+    background: $primary-bg;
+    border-color: $primary-100;
   }
 
   &:active {
-    background: #edeaf2;
+    background: $hover-bg;
   }
 
   &.sm {
     padding: 6px 16px;
-    font-size: 13px;
+    font-size: $text-xs;
   }
 
   &.lg {
     padding: 14px 32px;
-    font-size: 16px;
+    font-size: $text-md;
   }
 
   &.primary {
-    background: #7c3aed;
-    border-color: #7c3aed;
-    color: #fff;
+    background: $primary;
+    border-color: $primary;
+    color: $white;
 
     &:hover {
-      background: #6d28d9;
-      border-color: #6d28d9;
+      background: darken($primary, 8%);
+      border-color: darken($primary, 8%);
     }
   }
 
   &.danger {
-    color: #c62828;
-    border-color: #e0b3b3;
+    color: $danger;
+    border-color: $danger-border;
 
     &:hover {
-      background: #fef2f2;
-      border-color: #c62828;
+      background: $danger-bg;
+      border-color: $danger;
     }
   }
 

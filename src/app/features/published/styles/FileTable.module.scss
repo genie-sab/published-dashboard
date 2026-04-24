@@ -1,7 +1,9 @@
+@use "../../../styles/variables" as *;
+
 // ── Table ──
 .tableWrapper {
-  border: 1px solid #e5e2ec;
-  border-radius: 12px;
+  border: 1px solid $border-color;
+  border-radius: $radius;
   overflow: hidden;
 }
 
@@ -13,22 +15,22 @@
   td {
     padding: 14px 16px;
     text-align: left;
-    font-size: 14px;
+    font-size: $text-sm;
     vertical-align: middle;
   }
 
   thead tr {
-    background: #faf8fd;
+    background: $primary-bg;
   }
 
   th {
-    font-weight: 600;
-    color: #5a5a6e;
-    border-bottom: 1px solid #e5e2ec;
+    font-weight: $fw-semibold;
+    color: $text-secondary;
+    border-bottom: 1px solid $border-color;
   }
 
   tbody tr {
-    border-bottom: 1px solid #f0ecf5;
+    border-bottom: 1px solid $border-row;
     transition: background 0.1s ease;
 
     &:last-child {
@@ -36,41 +38,17 @@
     }
 
     &:hover {
-      background: #fcfaff;
-    }
-
-    &.selected {
-      background: #f3eefe;
+      background: $hover-bg-light;
     }
   }
 
   td {
-    color: #1a1a2e;
+    color: $text-primary;
   }
 }
 
 .checkboxCell {
   width: 48px;
-}
-
-.checkbox {
-  width: 20px;
-  height: 20px;
-  border: 1.5px solid #d0cdd8;
-  border-radius: 6px;
-  cursor: pointer;
-  appearance: none;
-  background: #fff;
-  vertical-align: middle;
-
-  &:checked {
-    background: #7c3aed;
-    border-color: #7c3aed;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 14px;
-  }
 }
 
 .nameCell {
@@ -82,41 +60,10 @@
 .fileIcon {
   width: 32px;
   height: 32px;
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-
-  svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  &.pdf {
-    background: #fce4ec;
-    color: #c62828;
-  }
-  &.doc {
-    background: #e3f2fd;
-    color: #1565c0;
-  }
-  &.xls {
-    background: #e8f5e9;
-    color: #2e7d32;
-  }
-  &.ppt {
-    background: #fff3e0;
-    color: #e65100;
-  }
-  &.img {
-    background: #f3e5f5;
-    color: #7b1fa2;
-  }
-  &.txt {
-    background: #e0f2f1;
-    color: #00695c;
-  }
 }
 
 .menuCell {
@@ -139,25 +86,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #e5e2ec;
+  border: 1px solid $border-color;
   border-radius: 10px;
-  background: #fff;
-  color: #5a5a6e;
-  font-size: 14px;
-  font-weight: 500;
+  background: $white;
+  color: $text-secondary;
+  font-size: $text-sm;
+  font-weight: $fw-medium;
   cursor: pointer;
   transition: all 0.15s ease;
 
   &:hover:not(.active):not(:disabled) {
-    background: #f5f3f8;
-    border-color: #b8b3c6;
+    background: $primary-bg;
+    border-color: $border-color;
   }
 
   &.active {
-    background: #7c3aed;
-    border-color: #7c3aed;
-    color: #fff;
-    font-weight: 600;
+    background: $primary;
+    border-color: $primary;
+    color: $white;
+    font-weight: $fw-semibold;
   }
 
   &:disabled {
@@ -177,6 +124,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #8a8a9a;
-  font-size: 14px;
+  color: $text-muted;
+  font-size: $text-sm;
 }

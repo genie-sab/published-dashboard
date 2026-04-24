@@ -1,35 +1,84 @@
+@import "./styles/variables.scss";
+@import "bootstrap/scss/bootstrap";
 
-
-html {
-  height: 100%;
-}
-
-html,
+// GLOBAL RESET
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  color: $text-primary;
 }
 
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+// ====================
+// TEXT UTILITIES
+// ====================
+
+// Primary text (13px regular)
+.text-primary-sm {
+  font-size: $text-xs;
+  font-weight: $fw-regular;
+  color: $text-primary;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+// Table title (13px medium)
+.text-table-title {
+  font-size: $text-xs;
+  font-weight: $fw-medium;
+  color: $text-table-title;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+// Header (28px medium)
+.text-header {
+  font-size: $text-lg;
+  font-weight: $fw-medium;
+  color: $text-header;
 }
 
+// Sub-header (16px regular)
+.text-subheader {
+  font-size: $text-md;
+  font-weight: $fw-regular;
+  color: $text-primary;
+}
 
+// Secondary text (14px regular)
+.text-secondary {
+  font-size: $text-sm;
+  font-weight: $fw-regular;
+  color: $text-secondary;
+}
+
+// Selected text (16px regular)
+.text-selected {
+  font-size: $text-md;
+  font-weight: $fw-regular;
+  color: $text-secondary;
+}
+
+// Regular text (14px regular)
+.text-regular {
+  font-size: $text-sm;
+  font-weight: $fw-regular;
+  color: $text-table-title;
+}
+
+// option texts (14px regular)
+.text-option {
+  font-size: $text-sm;
+  font-weight: $fw-regular;
+  color: $text-header;
+}
+
+// ====================
+// COMMON UI
+// ====================
+
+.rounded-12 {
+  border-radius: $radius;
+}
+
+.bg-primary-light {
+  background-color: $primary-bg;
+}
+
+.text-primary-color {
+  color: $primary;
+}

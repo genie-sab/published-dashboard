@@ -1,13 +1,15 @@
+@use "../../../styles/variables" as *;
+
 .breadcrumb {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
-  color: #8a8a9a;
+  font-size: $text-sm;
+  color: $text-muted;
   margin-bottom: 16px;
 
   a {
-    color: #8a8a9a;
+    color: $text-muted;
     text-decoration: none;
 
     &:hover {
@@ -15,13 +17,13 @@
     }
 
     &.active {
-      color: #7c3aed;
+      color: $primary;
     }
   }
 }
 
 .separator {
-  color: #c0bcc8;
+  color: $text-placeholder;
   font-size: 12px;
 }
 
@@ -33,9 +35,9 @@
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1a1a2e;
+  font-size: $text-lg;
+  font-weight: $fw-bold;
+  color: $text-header;
   margin: 0;
 }
 
@@ -48,5 +50,52 @@
 
 .selectedCount {
   font-size: 15px;
-  color: #8a8a9a;
+  color: $text-muted;
 }
+
+// ── Mobile filters ──
+.mobileFilters {
+  margin-bottom: 16px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  border: 1.5px solid $border-color;
+  border-radius: $radius-pill;
+  font-size: 15px;
+  color: $text-primary;
+  background: $white;
+  outline: none;
+  transition: border-color 0.15s ease;
+
+  &::placeholder {
+    color: $text-placeholder;
+  }
+
+  &:focus {
+    border-color: $primary;
+  }
+}
+
+.searchWrapper {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: $text-placeholder;
+  pointer-events: none;
+}
+
+.filterRow {
+  display: flex;
+  gap: 10px;
+}
+

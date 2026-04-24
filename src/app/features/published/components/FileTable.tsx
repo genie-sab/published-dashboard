@@ -1,100 +1,30 @@
 "use client";
-import { useEffect, useState } from "react";
-import FileActionMenu from "@/app/components/FileActionMenu";
+import { useState } from "react";
+import Image from "next/image";
+import FileActionMenu from "@/app/features/published/components/sub/FileActionMenu";
+import CommonCheckbox from "@/app/components/CommonCheckbox";
+import { FileRow, fileTypeIconPaths } from "../data";
 import styles from "../styles/FileTable.module.scss";
 
-type FileType = "pdf" | "doc" | "xls" | "ppt" | "img" | "txt";
-
-interface FileRow {
-  id: number;
-  name: string;
-  type: FileType;
-  downloads: number;
-  views: number;
-  revenue: number;
-  publishedAt: string;
-}
-
 interface FileTableProps {
-  onSelectionChange?: (count: number) => void;
+  data: FileRow[];
+  selected: Set<number>;
+  onToggleSelect: (id: number) => void;
+  onToggleAll: () => void;
 }
-
-const sampleData: FileRow[] = [
-  { id: 1, name: "Maths Chapter 1.pdf", type: "pdf", downloads: 20, views: 102040, revenue: 9089, publishedAt: "12 Feb 2023" },
-  { id: 2, name: "Maths Chapter 1.pdf", type: "pdf", downloads: 43, views: 102040, revenue: 9089, publishedAt: "12 Feb 2023" },
-  { id: 3, name: "Chemistry Chapter 1.docs", type: "doc", downloads: 0, views: 102040, revenue: 9089, publishedAt: "12 Feb 2023" },
-  { id: 4, name: "Maths Chapter 1.xls", type: "xls", downloads: 203, views: 102040, revenue: 9089, publishedAt: "12 Feb 2023" },
-  { id: 5, name: "Maths Chapter 1.pdf", type: "pdf", downloads: 203, views: 102040, revenue: 9089, publishedAt: "12 Feb 2023" },
-  { id: 6, name: "Maths Chapter 1.xls", type: "xls", downloads: 203, views: 102040, revenue: 9089, publishedAt: "12 Feb 2023" },
-  { id: 7, name: "Maths Chapter 1.pptx", type: "ppt", downloads: 203, views: 102040, revenue: 9089, publishedAt: "12 Feb 2023" },
-  { id: 8, name: "Maths Chapter 1.txt", type: "txt", downloads: 203, views: 102040, revenue: 9089, publishedAt: "12 Feb 2023" },
-  { id: 9, name: "Chemistry Chapter 1.docs", type: "doc", downloads: 203, views: 102040, revenue: 9089, publishedAt: "12 Feb 2023" },
-  { id: 10, name: "Mitochondria.png", type: "img", downloads: 340, views: 102040, revenue: 9089, publishedAt: "12 Feb 2023" },
-];
-
-const fileTypeIcons: Record<FileType, React.ReactNode> = {
-  pdf: (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM9 13h1.5c.83 0 1.5.67 1.5 1.5S11.33 16 10.5 16H10v1.5H9V13zm4 0h1.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5H14v1.5h-1V13z" />
-    </svg>
-  ),
-  doc: (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM8 13h8v1H8v-1zm0 2.5h8v1H8v-1zm0 2.5h5v1H8v-1z" />
-    </svg>
-  ),
-  xls: (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM8 12h3v2H8v-2zm4 0h4v2h-4v-2zm-4 3h3v2H8v-2zm4 0h4v2h-4v-2z" />
-    </svg>
-  ),
-  ppt: (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM9 13h3c1.1 0 2 .9 2 2s-.9 2-2 2h-2v2H9v-6z" />
-    </svg>
-  ),
-  img: (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM8 12l2 3 2-2 4 5H6l2-6z" />
-    </svg>
-  ),
-  txt: (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6zm7 1.5L18.5 9H13V3.5zM8 13h8v1H8v-1zm0 2.5h8v1H8v-1zm0 2.5h5v1H8v-1z" />
-    </svg>
-  ),
-};
 
 const ITEMS_PER_PAGE = 10;
 
-const FileTable = ({ onSelectionChange }: FileTableProps) => {
-  const [selected, setSelected] = useState<Set<number>>(new Set());
+const FileTable = ({
+  data,
+  selected,
+  onToggleSelect,
+  onToggleAll,
+}: FileTableProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const data = sampleData;
   const totalPages = Math.max(1, Math.ceil(data.length / ITEMS_PER_PAGE));
 
-  const allSelected = data.length > 0 && selected.size === data.length;
-
-  useEffect(() => {
-    onSelectionChange?.(selected.size);
-  }, [selected, onSelectionChange]);
-
-  const toggleSelect = (id: number) => {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  };
-
-  const toggleAll = () => {
-    if (allSelected) {
-      setSelected(new Set());
-    } else {
-      setSelected(new Set(data.map((f) => f.id)));
-    }
-  };
+  const allSelected = data.length > 0 && data.every((f) => selected.has(f.id));
 
   const pageStart = (currentPage - 1) * ITEMS_PER_PAGE;
   const pageData = data.slice(pageStart, pageStart + ITEMS_PER_PAGE);
@@ -106,7 +36,8 @@ const FileTable = ({ onSelectionChange }: FileTableProps) => {
     } else {
       pages.push(1, 2, 3);
       if (currentPage > 4) pages.push("ellipsis");
-      if (currentPage > 3 && currentPage < totalPages - 2) pages.push(currentPage);
+      if (currentPage > 3 && currentPage < totalPages - 2)
+        pages.push(currentPage);
       if (currentPage < totalPages - 3) pages.push("ellipsis");
       pages.push(totalPages);
     }
@@ -115,18 +46,15 @@ const FileTable = ({ onSelectionChange }: FileTableProps) => {
 
   return (
     <div>
-      {/* Table */}
       <div className={styles.tableWrapper}>
         <table className={styles.table}>
           <thead>
             <tr>
               <th className={styles.checkboxCell}>
-                <input
-                  type="checkbox"
-                  className={styles.checkbox}
+                <CommonCheckbox
                   checked={allSelected}
-                  onChange={toggleAll}
-                  aria-label="Select all"
+                  onChange={onToggleAll}
+                  ariaLabel="Select all"
                 />
               </th>
               <th>Name</th>
@@ -139,23 +67,23 @@ const FileTable = ({ onSelectionChange }: FileTableProps) => {
           </thead>
           <tbody>
             {pageData.map((file) => (
-              <tr
-                key={file.id}
-                className={selected.has(file.id) ? styles.selected : ""}
-              >
+              <tr key={file.id}>
                 <td className={styles.checkboxCell}>
-                  <input
-                    type="checkbox"
-                    className={styles.checkbox}
+                  <CommonCheckbox
                     checked={selected.has(file.id)}
-                    onChange={() => toggleSelect(file.id)}
-                    aria-label={`Select ${file.name}`}
+                    onChange={() => onToggleSelect(file.id)}
+                    ariaLabel={`Select ${file.name}`}
                   />
                 </td>
                 <td>
                   <div className={styles.nameCell}>
-                    <div className={`${styles.fileIcon} ${styles[file.type]}`}>
-                      {fileTypeIcons[file.type]}
+                    <div className={styles.fileIcon}>
+                      <Image
+                        src={fileTypeIconPaths[file.type]}
+                        alt={file.type}
+                        width={18}
+                        height={18}
+                      />
                     </div>
                     {file.name}
                   </div>
@@ -173,7 +101,6 @@ const FileTable = ({ onSelectionChange }: FileTableProps) => {
         </table>
       </div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className={styles.pagination}>
           <button
@@ -206,7 +133,7 @@ const FileTable = ({ onSelectionChange }: FileTableProps) => {
               >
                 {page}
               </button>
-            )
+            ),
           )}
 
           <button

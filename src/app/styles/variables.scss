@@ -1,0 +1,64 @@
+// COLORS
+$primary: #8752E1;
+$primary-bg: #f9f7fc;
+$primary-100: #E1D4F8;
+$primary-200: #D6BFFF;
+$secondary: #747476;
+$white: #ffffff;
+
+$text-primary: #0E0E10;
+$text-header: #050505;
+$text-table-title: #454648;
+$text-secondary: #747476;
+$text-muted: #8a8a9a;
+$text-placeholder: #b0adb8;
+
+// BORDERS
+$border-color: #e5e2ec;
+$border-light: #ece8f3;
+$border-row: #f0ecf5;
+$file-action-menu-border: #EDEDED;
+
+// HOVER / ACTIVE BACKGROUNDS
+$hover-bg: #f0ecf5;
+$hover-bg-light: #fcfaff;
+
+// DANGER
+$danger: #c62828;
+$danger-border: #e0b3b3;
+$danger-bg: #fef2f2;
+
+// FILE TYPE ICON COLORS
+$file-pdf-bg: #fce4ec;
+$file-pdf-color: #c62828;
+$file-doc-bg: #e3f2fd;
+$file-doc-color: #1565c0;
+$file-xls-bg: #e8f5e9;
+$file-xls-color: #2e7d32;
+$file-ppt-bg: #fff3e0;
+$file-ppt-color: #e65100;
+$file-img-bg: #f3e5f5;
+$file-img-color: #7b1fa2;
+$file-txt-bg: #e0f2f1;
+$file-txt-color: #00695c;
+
+// FONT WEIGHTS
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// FONT SIZES
+$text-xs: 13px;
+$text-sm: 14px;
+$text-md: 16px;
+$text-lg: 28px;
+
+// RADIUS
+$radius: 12px;
+$radius-pill: 999px;
+
+// SHADOWS
+$shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 2px 12px rgba(0, 0, 0, 0.06);
+$shadow-dropdown: 0 4px 16px rgba(0, 0, 0, 0.08);

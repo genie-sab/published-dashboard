@@ -1,0 +1,43 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  background: #f5f1fc;
+  border: 1px solid #e5e0f0;
+  border-radius: 999px;
+  padding: 4px;
+  gap: 2px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  color: #6b6b7b;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:hover:not(.active) {
+    background: #ece7f5;
+    color: #4a4a5a;
+  }
+
+  &.active {
+    background: #fff;
+    border-color: #d6cfe6;
+    color: #1a1a2e;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+}
